@@ -1,40 +1,287 @@
-body{
+*{
 margin:0;
-font-family:Arial;
-background:#090b16;
-color:white;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
 }
+
+body{
+background:linear-gradient(
+135deg,
+#050816,
+#0d1026,
+#1a1040,
+#2b1257
+);
+color:white;
+min-height:100vh;
+}
+
+/* LOGIN */
 
 .center{
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-height:100vh;
+min-height:100vh;
+padding:20px;
 }
 
 .logo{
-width:300px;
+width:280px;
+max-width:90%;
 border-radius:20px;
-box-shadow:0 0 30px #7b2fff;
+box-shadow:
+0 0 15px #7b2fff,
+0 0 35px #7b2fff;
+margin-bottom:20px;
 }
 
 .card{
-margin-top:20px;
 background:#13172a;
 padding:25px;
-border-radius:15px;
-width:350px;
+border-radius:20px;
+width:100%;
+max-width:400px;
+box-shadow:
+0 0 20px rgba(123,47,255,.4);
 }
 
-input,textarea{
+.card h1{
+text-align:center;
+margin-bottom:10px;
+}
+
+.slogan{
+text-align:center;
+color:#c5b2ff;
+margin-bottom:15px;
+}
+
+/* INPUT */
+
+input,
+textarea{
 width:100%;
-padding:10px;
+padding:12px;
 margin-top:10px;
 background:#1f2340;
-border:none;
+border:1px solid #323a63;
 color:white;
+border-radius:12px;
+outline:none;
+}
+
+input:focus,
+textarea:focus{
+border-color:#7b2fff;
+}
+
+/* BUTTON */
+
+button{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:12px;
+background:#7b2fff;
+color:white;
+cursor:pointer;
+font-weight:bold;
+transition:.3s;
+}
+
+button:hover{
+transform:scale(1.03);
+background:#9f73ff;
+}
+
+.link{
+margin-top:15px;
+text-align:center;
+cursor:pointer;
+color:#a889ff;
+}
+
+/* HEADER */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 20px;
+background:#13172a;
+box-shadow:0 0 15px rgba(0,0,0,.5);
+}
+
+.settingBtn{
+width:50px;
+font-size:20px;
+}
+
+/* MENU */
+
+.menu{
+display:none;
+position:absolute;
+top:70px;
+right:15px;
+width:260px;
+background:#13172a;
+padding:15px;
+border-radius:15px;
+box-shadow:0 0 20px rgba(0,0,0,.5);
+z-index:999;
+}
+
+.accountBox{
+background:#1f2340;
+padding:10px;
 border-radius:10px;
+margin-bottom:10px;
+}
+
+.accountBox p{
+margin:5px 0;
+}
+
+/* POPUP */
+
+.popup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.7);
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+
+.popupContent{
+background:#13172a;
+padding:30px;
+border-radius:20px;
+width:90%;
+max-width:400px;
+text-align:center;
+}
+
+/* NẠP TIỀN */
+
+.topDonate{
+padding:15px;
+text-align:center;
+background:#0d1026;
+border-bottom:1px solid #242f66;
+}
+
+.rainbowText{
+font-size:18px;
+font-weight:bold;
+text-decoration:none;
+background:linear-gradient(
+90deg,
+red,
+orange,
+yellow,
+lime,
+cyan,
+blue,
+violet,
+red
+);
+background-size:400%;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:rainbowMove 6s linear infinite;
+}
+
+@keyframes rainbowMove{
+0%{
+background-position:0%;
+}
+100%{
+background-position:400%;
+}
+}
+
+/* SERVICE */
+
+#serviceList{
+padding:15px;
+}
+
+.service{
+background:#13172a;
+padding:20px;
+margin-bottom:15px;
+border-radius:18px;
+box-shadow:
+0 0 15px rgba(123,47,255,.15);
+transition:.3s;
+}
+
+.service:hover{
+transform:translateY(-3px);
+}
+
+.service h3{
+margin-bottom:10px;
+color:#c9b7ff;
+}
+
+.service p{
+margin-bottom:10px;
+}
+
+/* ADMIN */
+
+.adminPanel{
+margin:20px;
+padding:20px;
+background:#13172a;
+border-radius:20px;
+}
+
+.adminPanel h2,
+.adminPanel h3{
+margin-bottom:10px;
+}
+
+.adminPanel hr{
+margin:20px 0;
+border:none;
+height:1px;
+background:#303b73;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+header{
+flex-direction:row;
+}
+
+.menu{
+width:90%;
+right:5%;
+}
+
+.logo{
+width:220px;
+}
+
+.card{
+width:100%;
+}
+
+}border-radius:10px;
 }
 
 button{
