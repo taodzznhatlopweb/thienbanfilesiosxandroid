@@ -1,5 +1,3 @@
-alert("script loaded");
-
 let users = JSON.parse(localStorage.getItem("users")) || [];
 let services = JSON.parse(localStorage.getItem("services")) || [];
 
