@@ -56,6 +56,8 @@ function register() {
 
 function login() {
 
+    alert("Nút đăng nhập hoạt động");
+
     let u = document.getElementById("loginUser").value.trim();
     let p = document.getElementById("loginPass").value.trim();
 
