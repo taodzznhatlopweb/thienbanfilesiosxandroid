@@ -96,9 +96,11 @@ function openDashboard() {
 
     renderServices();
 
-    if (typeof updateAccountInfo === "function") {
-        updateAccountInfo();
-    }
+updateStats();
+
+if (typeof updateAccountInfo === "function") {
+    updateAccountInfo();
+}
 }
 
 function addService() {
@@ -114,22 +116,43 @@ function addService() {
 
     renderServices();
 
+    updateStats();
+
     alert("Đã thêm dịch vụ");
 }
 
 function renderServices() {
 
     let html = "";
+    let currentUser = localStorage.getItem("currentUser");
 
-    services.forEach((s, index) => {
+    services.forEach((s,index)=>{
 
         html += `
         <div class="service">
             <h3>${s.name}</h3>
+            <p>${s.desc || ""}</p>
             <p>Giá: ${s.price}</p>
+
             <button onclick="buy(${index})">
                 Mua
             </button>
+        `;
+
+        if(currentUser === adminUser){
+
+            html += `
+            <button onclick="editService(${index})">
+                Sửa
+            </button>
+
+            <button onclick="deleteService(${index})">
+                Xóa
+            </button>
+            `;
+        }
+
+        html += `
         </div>
         `;
     });
@@ -154,11 +177,40 @@ function buy(index) {
 
     if (!user) return;
 
-    user.purchased.push(services[index]);
+    let service = services[index];
+if(!confirm(
+    "Bạn có chắc muốn mua " +
+    service.name +
+    " không?"
+)){
+    return;
+}
+    let price = parseInt(
+        String(service.price).replace(/\./g,"")
+    ) || 0;
+
+    if(user.balance < price){
+
+        alert(
+            "Số dư không đủ để mua dịch vụ này"
+        );
+
+        return;
+    }
+
+    user.balance -= price;
+
+    user.purchased.push(service);
 
     saveUsers();
 
-    alert("Vào phần đã mua để xem chi tiết");
+    alert(
+        "Mua thành công! Vào phần đã mua để xem chi tiết"
+    );
+
+    if(typeof updateAccountInfo === "function"){
+        updateAccountInfo();
+    }
 }
 
 function showPurchased() {
@@ -245,7 +297,131 @@ function logout() {
 
     location.reload();
 }
+function deleteService(index){
 
+    if(confirm("Xóa dịch vụ này?")){
+
+        services.splice(index,1);
+
+        saveServices();
+
+        renderServices();
+
+updateStats();
+    }
+}
+
+function editService(index){
+
+    let s = services[index];
+
+    let newName = prompt("Tên dịch vụ", s.name);
+    if(newName === null) return;
+
+    let newPrice = prompt("Giá", s.price);
+    if(newPrice === null) return;
+
+    let newDesc = prompt("Mô tả", s.desc);
+    if(newDesc === null) return;
+
+    let newLink = prompt("Link", s.link);
+    if(newLink === null) return;
+
+    s.name = newName;
+    s.price = newPrice;
+    s.desc = newDesc;
+    s.link = newLink;
+
+    saveServices();
+
+renderServices();
+
+updateStats();
+
+    alert("Đã cập nhật");
+} 
+function giftMoneyToUser(){
+
+    let username =
+        document.getElementById("giftUser").value.trim();
+
+    let money =
+        document.getElementById("giftMoney").value.trim();
+
+    if(!/^[0-9.]+$/.test(money)){
+        alert("Chỉ được nhập số và dấu chấm");
+        return;
+    }
+
+    let amount =
+        parseInt(money.replace(/\./g,""));
+
+    let user =
+        users.find(
+            x => x.username === username
+        );
+
+    if(!user){
+        alert("Không tìm thấy tài khoản");
+        return;
+    }
+
+    user.balance += amount;
+
+    saveUsers();
+
+    alert(
+        "Đã tặng " +
+        amount.toLocaleString("vi-VN") +
+        " VND cho " +
+        username
+    );
+
+    document.getElementById("giftUser").value = "";
+    document.getElementById("giftMoney").value = "";
+}
+function updateAccountInfo(){
+
+    let currentUser =
+        localStorage.getItem("currentUser");
+
+    document.getElementById("accountName").innerText =
+        "Tài khoản: " + currentUser;
+
+    let user =
+        users.find(
+            x => x.username === currentUser
+        );
+
+    if(user){
+
+        document.getElementById("accountMoney").innerText =
+            "Số dư: " +
+            user.balance.toLocaleString("vi-VN") +
+            " VND";
+
+    }else{
+
+        document.getElementById("accountMoney").innerText =
+            "Số dư: ADMIN";
+    }
+}
+function updateStats(){
+
+    let userBox =
+        document.getElementById("totalUsers");
+
+    let serviceBox =
+        document.getElementById("totalServices");
+
+    if(userBox){
+        userBox.innerText = users.length;
+    }
+
+    if(serviceBox){
+        serviceBox.innerText = services.length;
+    }
+}
 window.onload = () => {
 
     if (localStorage.getItem("currentUser")) {
