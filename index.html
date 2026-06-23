@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ThienBanFilesIosxAndroid</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="authPage" class="center">
+
+    <img src="assets/logo.png" class="logo">
+
+    <div class="card">
+
+        <h1>ThienBanFilesIosxAndroid</h1>
+
+        <div id="loginForm">
+            <input id="loginUser" placeholder="Tên tài khoản">
+            <input id="loginPass" type="password" placeholder="Mật khẩu">
+            <button onclick="login()">Đăng nhập</button>
+            <p onclick="showRegister()" class="link">Đăng ký</p>
+        </div>
+
+        <div id="registerForm" style="display:none">
+            <input id="regUser" placeholder="Tên tài khoản">
+            <input id="regPass" type="password" placeholder="Mật khẩu">
+            <button onclick="register()">Đăng ký</button>
+            <p onclick="showLogin()" class="link">Quay lại đăng nhập</p>
+        </div>
+
+    </div>
+</div>
+
+<div id="dashboard" style="display:none">
+
+    <header>
+        <h2>DỊCH VỤ</h2>
+
+        <button onclick="toggleMenu()" class="settingBtn">⚙</button>
+
+        <div id="menu" class="menu">
+
+            <button onclick="showAccount()">Thông tin tài khoản</button>
+
+            <button onclick="showPurchased()">Đã mua</button>
+
+            <button onclick="logout()">Đăng xuất</button>
+
+        </div>
+    </header>
+
+    <div id="adminPanel" style="display:none" class="adminPanel">
+
+        <h3>ADMIN PANEL</h3>
+
+        <input id="serviceName" placeholder="Tên dịch vụ">
+        <input id="servicePrice" placeholder="Giá">
+        <input id="serviceLink" placeholder="Link">
+        <textarea id="serviceDesc" placeholder="Mô tả"></textarea>
+
+        <button onclick="addService()">Thêm dịch vụ</button>
+
+    </div>
+
+    <div id="serviceList"></div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
