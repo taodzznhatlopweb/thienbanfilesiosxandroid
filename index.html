@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ThienBanFilesIosxAndroid</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- LOGIN PAGE -->
+
+<div id="authPage" class="center">
+
+    <img src="logo.png" class="logo">
+
+    <div class="card">
+
+        <h1>ThienBanFilesIosxAndroid</h1>
+
+        <h3 class="slogan">
+            AN TOÀN - UY TÍN - BUÔN BÁN LÂU DÀI
+        </h3>
+
+        <div id="loginForm">
+
+            <input
+                id="loginUser"
+                placeholder="Tên tài khoản"
+            >
+
+            <input
+                id="loginPass"
+                type="password"
+                placeholder="Mật khẩu"
+            >
+
+            <button onclick="login()">
+                Đăng nhập
+            </button>
+
+            <p
+                onclick="showRegister()"
+                class="link"
+            >
+                Đăng ký
+            </p>
+
+        </div>
+
+        <div
+            id="registerForm"
+            style="display:none"
+        >
+
+            <input
+                id="regUser"
+                placeholder="Tên tài khoản"
+            >
+
+            <input
+                id="regPass"
+                type="password"
+                placeholder="Mật khẩu"
+            >
+
+            <button onclick="register()">
+                Đăng ký
+            </button>
+
+            <p
+                onclick="showLogin()"
+                class="link"
+            >
+                Quay lại đăng nhập
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- DASHBOARD -->
+
+<div
+    id="dashboard"
+    style="display:none"
+>
+
+    <div class="bannerBox">
+        <img src="banner.png" class="banner">
+    </div>
+
+    <!-- POPUP -->
+
+    <div
+        id="welcomePopup"
+        class="popup"
+    >
+
+        <div class="popupContent">
+
+            <h2>
+                Xin cảm ơn đã vào web của admin
+                nạp tiền vào web thì ib zalo của mình
+                ở góc trên màn hình nhé
+                🔥CHÚC BẠN LỰA CHỌN FILE VUI VẺ🔥
+            </h2>
+
+            <button
+                onclick="closeWelcomePopup()"
+            >
+                Close
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- ZALO -->
+
+    <div class="topDonate">
+
+        <a
+            href="https://zalo.me/0778877021"
+            target="_blank"
+            class="rainbowText"
+        >
+
+            NẠP TIỀN VÀO WEB THÌ IB ZALO
+
+            <br>
+
+            ẤN VÀO ĐÂY ĐỂ ĐƯỢC ĐƯA ĐẾN ZALO
+
+        </a>
+
+    </div>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div>
+
+            <h2>
+                TRANG CHÍNH
+            </h2>
+
+            <h4>
+                AN TOÀN - UY TÍN - BUÔN BÁN LÂU DÀI
+            </h4>
+
+        </div>
+
+        <button
+            onclick="toggleMenu()"
+            class="settingBtn"
+        >
+            ⚙
+        </button>
+
+        <div
+            id="menu"
+            class="menu"
+        >
+
+            <div class="accountBox">
+
+                <p id="accountName">
+                    Tài khoản:
+                </p>
+
+                <p id="accountMoney">
+                    Số dư:
+                </p>
+
+            </div>
+
+            <button
+                onclick="changePassword()"
+            >
+                Đổi mật khẩu
+            </button>
+
+            <button
+                onclick="showPurchased()"
+            >
+                Đã mua
+            </button>
+
+            <button
+                onclick="logout()"
+            >
+                Đăng xuất
+            </button>
+
+        </div>
+
+    </header>
+
+    <!-- ADMIN -->
+
+    <div
+        id="adminPanel"
+        class="adminPanel"
+        style="display:none"
+    >
+
+<h2>
+    ADMIN PANEL
+</h2>
+
+<button onclick="showUsers()">
+    User List
+</button>
+
+<button onclick="banUser()">
+    Ban User
+</button>
+
+<div class="statsBox">
+
+    <p>
+        Tổng User:
+        <span id="totalUsers">0</span>
+    </p>
+
+    <p>
+        Tổng Dịch Vụ:
+        <span id="totalServices">0</span>
+    </p>
+
+</div>
+        <hr>
+
+        <h3>
+            Thêm dịch vụ
+        </h3>
+
+        <input
+            id="serviceName"
+            placeholder="Tên dịch vụ"
+        >
+
+        <input
+            id="servicePrice"
+            placeholder="Giá"
+        >
+
+        <input
+            id="serviceLink"
+            placeholder="Link"
+        >
+
+        <textarea
+            id="serviceDesc"
+            placeholder="Mô tả"
+        ></textarea>
+
+        <button
+            onclick="addService()"
+        >
+            Thêm dịch vụ
+        </button>
+
+        <hr>
+
+        <h3>
+            Tặng tiền User
+        </h3>
+
+        <input
+            id="giftUser"
+            placeholder="Tên tài khoản"
+        >
+
+        <input
+            id="giftMoney"
+            placeholder="Ví dụ: 20.000"
+        >
+
+        <button
+            onclick="giftMoneyToUser()"
+        >
+            Tặng tiền
+        </button>
+
+    </div>
+
+    <!-- DỊCH VỤ -->
+
+    <div id="serviceList">
+
+    </div>
+
+</div>
+<script src="script.js"></script>
+
+</body>
+</html>
